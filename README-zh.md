@@ -18,6 +18,8 @@
 
 ### 快速开始
 ```bash
+git clone https://github.com/yjqqqaq/workmate.git
+cd workmate
 # 使用 docker-compose 启动应用
 docker-compose up --build -d
 ```
@@ -25,7 +27,7 @@ docker-compose up --build -d
 ## 使用方法
 
 1. 通过 `http://<host_ip>:8008` 访问 Web 界面。
-2. 经过简单的初始化设置后，进入场景选择页面。
+2. 经过简单的初始化设置后，进入场景选择页面。目前是一个展示Demo，只提供了Auto Code Agent单个场景。有关场景的详细说明和自定义场景指南，请参阅[场景配置指南](/docs/scenario-configuration.md)或[中文场景配置指南](/docs/scenario-configuration-zh.md)。
 3. 选择场景后，填写场景必要的配置和输入，即可在后端运行。
 4. 在Docker历史中查看执行情况。
 
@@ -38,4 +40,3 @@ docker-compose up --build -d
 
 基于目前的架构设计，所有这些功能都可以在当前框架内轻松实现。
 
-有关配置场景的详细信息，请参阅[场景配置指南](/docs/scenario-configuration.md)或[中文场景配置指南](/docs/scenario-configuration-zh.md)。
