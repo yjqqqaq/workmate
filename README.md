@@ -38,3 +38,10 @@ docker-compose up --build -d
 Based on the current architecture design, all these features can be easily implemented within the current framework.
 
 For detailed information on configuring scenarios, please refer to the [Scenario Configuration Guide](/docs/scenario-configuration.md) or [Chinese Scenario Configuration Guide](/docs/scenario-configuration-zh.md).
+
+
+## Acknowledgments
+
+Special thanks to Yuan Yang for his expert technical guidance and support.
+
+Our thanks also go to Claude-code and Docker for their outstanding work that made this project possible.
