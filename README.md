@@ -17,6 +17,8 @@ The only requirement: [Docker](https://docs.docker.com/engine/install/). For use
 
 ### Getting Started
 ```bash
+git clone https://github.com/yjqqqaq/workmate.git
+cd workmate
 # Start the application using docker-compose
 docker-compose up --build -d
 ```
