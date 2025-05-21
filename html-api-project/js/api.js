@@ -404,7 +404,7 @@ const API = {
             //pull 容器
             try { 
                 await this.docker.pull(imageName) ; 
-                await this.docker.pull('busybox') ; 
+                await this.docker.pull('busybox:latest') ; 
             } catch (error) { 
                 throw new Error(`无法拉取镜像 ${imageName}: ${error.message}`);
             }
@@ -482,7 +482,7 @@ const API = {
                 
                 // 创建busybox容器
                 const busyboxContainer = await this.docker.createContainer({
-                    Image: 'busybox',
+                    Image: 'busybox:latest',
                     name: `copy-to-volume-${containerName}`,
                     Cmd: ['sh', '-c', `cp -r /source/${containerName}/* /dest/ && chmod -R 777 /dest/`],
                     HostConfig: {
