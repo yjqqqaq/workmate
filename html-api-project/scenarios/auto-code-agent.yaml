@@ -1,0 +1,36 @@
+name: Auto Code Agent
+description: 用于对一个Gitlab项目，在后台自动实现需求迭代开发，并提交Merge Request的Agent。
+inputs:
+  - name: Requirement
+    label: 迭代需求
+    type: textarea
+    placeholder: 请描述你想要迭代开发的需求
+    required: true
+outputs:
+  - name: merge_request_url
+    label: Merge Request 链接
+    type: link
+  - name: description
+    label: Merge Request Descritpion
+    type: text
+  - name: last_output
+    label: Agent输出
+    type: text
+settings:
+  - name: system_rules
+    description: 系统规则
+    defaultValue: 我的技术栈是Node.js + Vue + Windtail。不要写测试用例。
+    showInPopup: true
+  - name: gitlab_project_url
+    description: Gitlab 项目地址
+    defaultValue: https://example.gitlab.com/path/to/your/project
+    showInPopup: true
+  - name: gitlab_main_work_branch
+    description: Gitlab 项目开发分支
+    defaultValue: main
+    showInPopup: true
+  - name: access_token
+    description: Gitlab Access Token
+    defaultValue: gt-......................
+  
+image: fffiaze/backend-gitlab-runner:latest

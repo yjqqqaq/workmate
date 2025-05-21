@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>场景配置</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/icons.css">
+</head>
+<body>
+    <header>
+        <h1>场景配置</h1>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html"><span class="icon icon-home"></span>首页</a></li>
+                <li><a href="history.html"><span class="icon icon-history"></span>Docker历史</a></li>
+                <li><a href="config.html" class="active"><span class="icon icon-config"></span>配置</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section class="config-form">
+            <h2 id="scenario-title"><span class="icon icon-config"></span>加载中...</h2>
+            <div id="config-description" class="description">加载中...</div>
+            
+            <form id="configForm">
+                <div id="settings-container">
+                    <!-- 设置项将在这里动态生成 -->
+                </div>
+                <button type="submit" class="btn"><span class="icon icon-save"></span>保存配置</button>
+            </form>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2023 前端项目</p>
+    </footer>
+
+    <script src="js/api-client.js"></script>
+    <script src="js/config.js"></script>
+</body>
+</html>

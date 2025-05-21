@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Docker历史记录</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/history.css">
+    <link rel="stylesheet" href="css/icons.css">
+</head>
+<body>
+    <header>
+        <h1>Docker历史记录</h1>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html"><span class="icon icon-home"></span>首页</a></li>
+                <li><a href="history.html" class="active"><span class="icon icon-history"></span>Docker历史</a></li>
+                <li><a href="config.html"><span class="icon icon-config"></span>配置</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section class="user-form">
+            <h2><span class="icon icon-user"></span>请输入您的用户名</h2>
+            <form id="userForm">
+                <div class="form-group">
+                    <label for="username">用户名：</label>
+                    <input type="text" id="username" name="username" placeholder="请输入您的用户名">
+                    <div id="error-message" class="error-message"></div>
+                </div>
+                <button type="submit" class="btn"><span class="icon icon-search"></span>查询</button>
+            </form>
+        </section>
+
+        <section id="dockerHistorySection" class="docker-history-section" style="display: none;">
+            <h2><span class="icon icon-history"></span>Docker实例列表</h2>
+            
+            <div class="docker-toolbar">
+                <div class="docker-toolbar-left">
+                    <button id="refreshButton" class="refresh-button">
+                        <span class="icon icon-refresh"></span>
+                        刷新列表
+                    </button>
+                </div>
+                <div class="docker-toolbar-right">
+                    <div class="sort-control">
+                        <label for="sortField">排序方式：</label>
+                        <select id="sortField" class="sort-select">
+                            <option value="createdAt">创建时间</option>
+                            <option value="status">状态</option>
+                            <option value="name">名称</option>
+                        </select>
+                    </div>
+                    <div class="sort-control">
+                        <label for="sortDirection">排序顺序：</label>
+                        <select id="sortDirection" class="sort-select">
+                            <option value="desc">降序</option>
+                            <option value="asc">升序</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="dockerList" class="docker-list">
+                <div class="loading-overlay">
+                    <div class="loading-spinner"></div>
+                    <div class="loading-text">正在加载数据...</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="dockerDetailSection" class="docker-detail-section" style="display: none;">
+            <h2><span class="icon icon-details"></span>Docker详细信息</h2>
+            <div id="dockerDetail" class="docker-detail">
+                <!-- 详细信息将通过JavaScript动态填充 -->
+            </div>
+            <div class="button-group">
+                <button id="backButton" class="btn btn-secondary"><span class="icon icon-back"></span>返回列表</button>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2023 前端项目</p>
+    </footer>
+
+    <script src="js/history.js"></script>
+</body>
+</html>

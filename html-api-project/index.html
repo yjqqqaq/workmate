@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RESTful API 接口测试</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>RESTful API 接口测试</h1>
+        </header>
+        
+        <div class="api-section">
+            <h2>Control Project 文件操作</h2>
+            <div class="api-form">
+                <h3>上传文件到 Control Project</h3>
+                <div class="form-group">
+                    <label for="fileName">文件名:</label>
+                    <input type="text" id="fileName" placeholder="例如: config.json">
+                </div>
+                <div class="form-group">
+                    <label for="fileContent">文件内容:</label>
+                    <textarea id="fileContent" rows="5" placeholder="输入文件内容..."></textarea>
+                </div>
+                <button id="uploadFileBtn">上传文件</button>
+            </div>
+            
+            <div class="api-form">
+                <h3>获取 Control Project 文件</h3>
+                <div class="form-group">
+                    <label for="getFileName">文件名:</label>
+                    <input type="text" id="getFileName" placeholder="例如: PRD.md">
+                </div>
+                <button id="getFileBtn">获取文件</button>
+                <div class="result-container">
+                    <h4>文件内容:</h4>
+                    <pre id="fileResult"></pre>
+                </div>
+            </div>
+        </div>
+        
+        <div class="api-section">
+            <h2>任务执行</h2>
+            <div class="api-form">
+                <h3>执行任务</h3>
+                <div class="form-group">
+                    <label for="templateFile">模板文件:</label>
+                    <input type="text" id="templateFile" placeholder="例如: /ci-templates/step-iteration.yml">
+                </div>
+                <div class="form-group">
+                    <label for="inputPromptFile">输入提示文件:</label>
+                    <input type="text" id="inputPromptFile" placeholder="例如: /prompts/step-iteration.md">
+                </div>
+                <div class="form-group">
+                    <label for="modelName">模型名称:</label>
+                    <select id="modelName">
+                        <option value="claude">Claude</option>
+                        <option value="gemini">Gemini</option>
+                        <option value="deepseek">DeepSeek</option>
+                    </select>
+                </div>
+                <button id="executeTaskBtn">执行任务</button>
+            </div>
+            
+            <div class="api-form">
+                <h3>任务状态</h3>
+                <div class="form-group">
+                    <label for="jobId">任务ID:</label>
+                    <input type="text" id="jobId" placeholder="任务ID">
+                </div>
+                <button id="checkJobStatusBtn">检查状态</button>
+                <div class="result-container">
+                    <h4>任务状态:</h4>
+                    <pre id="jobStatusResult"></pre>
+                </div>
+            </div>
+            
+            <div class="api-form">
+                <h3>取消任务</h3>
+                <div class="form-group">
+                    <label for="cancelJobId">任务ID:</label>
+                    <input type="text" id="cancelJobId" placeholder="任务ID">
+                </div>
+                <button id="cancelJobBtn">取消任务</button>
+            </div>
+        </div>
+        
+        <div class="api-section">
+            <h2>配置管理</h2>
+            <div class="api-form">
+                <h3>GitLab 配置</h3>
+                <div class="form-group">
+                    <label for="gitlabUrl">GitLab URL:</label>
+                    <input type="text" id="gitlabUrl" placeholder="例如: https://gitlab.example.com/project">
+                </div>
+                <div class="form-group">
+                    <label for="accessToken">访问令牌:</label>
+                    <input type="text" id="accessToken" placeholder="GitLab 访问令牌">
+                </div>
+                <button id="testConnectionBtn">测试连接</button>
+            </div>
+            
+            <div class="api-form">
+                <h3>Control Project 管理</h3>
+                <button id="checkControlProjectBtn">检查 Control Project</button>
+                <button id="createControlProjectBtn">创建 Control Project</button>
+                <div class="result-container">
+                    <h4>Control Project 信息:</h4>
+                    <pre id="controlProjectResult"></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="notification" class="notification"></div>
+    
+    <script src="js/api.js"></script>
+    <script src="js/rest-client.js"></script>
+    <script src="js/main.js"></script>
+    
+    <div class="api-section">
+        <h2>RESTful API 接口说明</h2>
+        <div class="api-form">
+            <h3>API 端点</h3>
+            <pre>
+# 文件操作
+POST   /api/files              - 上传文件
+GET    /api/files/:fileName    - 获取文件
+
+# 任务执行
+POST   /api/tasks              - 执行任务
+GET    /api/tasks/:jobId       - 检查任务状态
+DELETE /api/tasks/:jobId       - 取消任务
+
+# 配置管理
+POST   /api/connection         - 测试GitLab连接
+GET    /api/control-project    - 检查Control Project
+POST   /api/control-project    - 创建Control Project
+            </pre>
+        </div>
+    </div>
+</body>
+</html>

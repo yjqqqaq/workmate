@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center px-5 py-3 font-medium text-white bg-primary rounded-custom transition-all duration-300 shadow-custom hover:bg-primary-dark hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 active:shadow-sm;
+  }
+  
+  .btn-primary {
+    @apply bg-secondary hover:bg-secondary-dark;
+  }
+  
+  .btn-secondary {
+    @apply bg-primary hover:bg-primary-dark;
+  }
+  
+  .btn-danger {
+    @apply bg-accent hover:bg-red-700;
+  }
+  
+  .form-input {
+    @apply w-full p-3 border border-borderColor dark:border-gray-700 rounded-custom text-base transition-all duration-300 bg-bgLight dark:bg-gray-700 dark:text-white focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20;
+  }
+  
+  .form-label {
+    @apply block mb-2 font-bold text-textColor dark:text-gray-300;
+  }
+  
+  .form-group {
+    @apply mb-5;
+  }
+  
+  .error-message {
+    @apply text-accent text-sm mt-1 min-h-5 flex items-center;
+  }
+  
+  /* Dark mode specific classes */
+  .card {
+    @apply bg-white dark:bg-gray-800 rounded-custom shadow-custom p-4 transition-colors duration-300;
+  }
+  
+  .text-default {
+    @apply text-textColor dark:text-gray-300;
+  }
+  
+  .bg-default {
+    @apply bg-bgColor dark:bg-gray-900;
+  }
+  
+  .border-default {
+    @apply border-borderColor dark:border-gray-700;
+  }
+}

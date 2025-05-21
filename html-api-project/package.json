@@ -1,0 +1,21 @@
+{
+  "name": "html-api-project",
+  "version": "1.0.0",
+  "description": "RESTful API接口项目",
+  "main": "js/server.js",
+  "scripts": {
+    "start": "node js/server.js",
+    "test": "node tests/docker-api-test.js",
+    "test:python": "python3 tests/docker-api-test.py"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "body-parser": "^1.20.2",
+    "dockerode": "^3.3.5",
+    "redis": "^4.6.10",
+    "node-fetch": "^2.6.7",
+    "node-schedule": "^2.1.1",
+    "js-yaml": "^4.1.0"
+  }
+}

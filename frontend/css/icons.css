@@ -1,0 +1,99 @@
+/* 图标库 */
+.icon {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    stroke-width: 0;
+    stroke: currentColor;
+    fill: currentColor;
+    vertical-align: -0.125em;
+    margin-right: 0.3em;
+}
+
+/* 主页图标 */
+.icon-home::before {
+    content: "🏠";
+}
+
+/* 配置图标 */
+.icon-config::before {
+    content: "⚙️";
+}
+
+/* 历史记录图标 */
+.icon-history::before {
+    content: "📋";
+}
+
+/* 用户图标 */
+.icon-user::before {
+    content: "👤";
+}
+
+/* 运行图标 */
+.icon-run::before {
+    content: "▶️";
+}
+
+/* 刷新图标 */
+.icon-refresh::before {
+    content: "🔄";
+}
+
+/* 返回图标 */
+.icon-back::before {
+    content: "⬅️";
+}
+
+/* 查询图标 */
+.icon-search::before {
+    content: "🔍";
+}
+
+/* 保存图标 */
+.icon-save::before {
+    content: "💾";
+}
+
+/* 状态图标 */
+.icon-status-running::before {
+    content: "✅";
+}
+
+.icon-status-stopped::before {
+    content: "⛔";
+}
+
+.icon-status-paused::before {
+    content: "⏸️";
+}
+
+/* 详情图标 */
+.icon-details::before {
+    content: "📄";
+}
+
+/* 日志图标 */
+.icon-logs::before {
+    content: "📝";
+}
+
+/* 删除图标 */
+.icon-delete::before {
+    content: "🗑️";
+}
+
+/* 警告图标 */
+.icon-warning::before {
+    content: "⚠️";
+}
+
+/* 成功图标 */
+.icon-success::before {
+    content: "✓";
+}
+
+/* 错误图标 */
+.icon-error::before {
+    content: "✗";
+}

@@ -1,0 +1,74 @@
+version: '3'
+
+services:
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    restart: always
+    command: redis-server --appendonly yes
+
+  docker-socket-proxy:
+    image: tecnativa/docker-socket-proxy:latest
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - CONTAINERS=1
+      - IMAGES=1
+      - NETWORKS=1
+      - VOLUMES=1
+      - INFO=1
+      - EXEC=1
+      - PING=1
+      - VERSION=1
+      - AUTH=1
+      - SERVICES=1
+      - TASKS=1
+      - BUILD=1
+      - POST=1
+      - COMMIT=1
+      - SYSTEM=1
+      - DISTRIBUTION=1
+      - EVENTS=1
+      - PLUGINS=1
+      - PRUNE=1
+      - SWARM=1
+    restart: always
+
+  backend:
+    build:
+      context: ./html-api-project
+      dockerfile: Dockerfile
+    ports:
+      - "4000:3000"
+    volumes:
+      - ./html-api-project:/app
+      - /app/node_modules
+      - shared-docker-mounts:/shared-mounts
+    depends_on:
+      - docker-socket-proxy
+      - redis
+    restart: always  
+    user: root  # 以root用户启动
+    command: sh -c "chown node:node /shared-mounts && exec su-exec node npm start"
+    
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "8008:80"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    depends_on:
+      - backend
+    restart: always
+
+volumes:
+  shared-docker-mounts:
+  redis-data:
