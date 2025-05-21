@@ -408,9 +408,7 @@ const API = {
             } catch (error) { 
                 throw new Error(`无法拉取镜像 ${imageName}: ${error.message}`);
             }
-            
-            
-            
+                       
             const alphaNumeric = imageName.replace(/[^a-zA-Z0-9\-]/g, '');
             const randomSuffix = Math.random().toString(36).substring(2, 12);
             const containerName = `${alphaNumeric}-${randomSuffix}`;

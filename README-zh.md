@@ -20,6 +20,9 @@
 ```bash
 git clone https://github.com/yjqqqaq/workmate.git
 cd workmate
+
+# Pull必要的镜像 (由于Docker Socket Proxy的未知bug，下个版本会fix掉）
+docker pull busybox && docker pull fffiaze/backend-gitlab-runner:latest
 # 使用 docker-compose 启动应用
 docker-compose up --build -d
 ```

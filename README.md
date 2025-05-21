@@ -19,6 +19,8 @@ The only requirement: [Docker](https://docs.docker.com/engine/install/). For use
 ```bash
 git clone https://github.com/yjqqqaq/workmate.git
 cd workmate
+# Clone necessary images (due to unknown docker socket proxy bugs, will be fixed in next version)
+docker pull busybox && docker pull fffiaze/backend-gitlab-runner:latest
 # Start the application using docker-compose
 docker-compose up --build -d
 ```
