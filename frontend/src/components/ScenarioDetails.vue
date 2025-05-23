@@ -290,6 +290,17 @@ export default {
           requestData.options.settings['CHOSEN_LLM_NAME'] = globalConfig.DEFAULT_LLM.toLowerCase()
         }
         
+        // 添加AWS Claude配置
+        if (globalConfig.AWS_ACCESS_KEY_ID) {
+          requestData.options.settings['AWS_ACCESS_KEY_ID'] = globalConfig.AWS_ACCESS_KEY_ID
+        }
+        if (globalConfig.AWS_SECRET_ACCESS_KEY) {
+          requestData.options.settings['AWS_SECRET_ACCESS_KEY'] = globalConfig.AWS_SECRET_ACCESS_KEY
+        }
+        if (globalConfig.AWS_REGION) {
+          requestData.options.settings['AWS_REGION'] = globalConfig.AWS_REGION
+        }
+        
         // 发送请求
         const result = await ApiClient.startDocker(
           requestData.dockerName,

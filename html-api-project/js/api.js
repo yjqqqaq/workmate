@@ -403,10 +403,42 @@ const API = {
             
             //pull 容器
             try { 
-                await this.docker.pull(imageName) ; 
-                await this.docker.pull('busybox:latest') ; 
+                // 优先尝试从远程拉取镜像
+                try {
+                    console.log(`尝试从远程拉取镜像 ${imageName}...`);
+                    await this.docker.pull(imageName);
+                    console.log(`成功从远程拉取镜像 ${imageName}`);
+                } catch (pullError) {
+                    console.log(`从远程拉取镜像 ${imageName} 失败: ${pullError.message}`);
+                    
+                    // 检查本地是否存在镜像
+                    try {
+                        const image = this.docker.getImage(imageName);
+                        await image.inspect();
+                        console.log(`远程拉取失败，使用本地已存在的镜像 ${imageName}`);
+                    } catch (inspectError) {
+                        // 如果本地也不存在，则抛出错误
+                        throw new Error(`无法使用镜像 ${imageName}: 远程拉取失败且本地不存在`);
+                    }
+                }
+                
+                // 同样的逻辑应用于busybox镜像
+                try {
+                    await this.docker.pull('busybox:latest');
+                } catch (busyboxPullError) {
+                    console.log(`拉取busybox镜像失败: ${busyboxPullError.message}`);
+                    
+                    // 检查本地是否存在busybox镜像
+                    try {
+                        const busyboxImage = this.docker.getImage('busybox:latest');
+                        await busyboxImage.inspect();
+                        console.log('远程拉取失败，使用本地已存在的busybox镜像');
+                    } catch (busyboxInspectError) {
+                        throw new Error('无法使用busybox镜像: 远程拉取失败且本地不存在');
+                    }
+                }
             } catch (error) { 
-                throw new Error(`无法拉取镜像 ${imageName}: ${error.message}`);
+                throw new Error(`无法获取所需镜像: ${error.message}`);
             }
                        
             const alphaNumeric = imageName.replace(/[^a-zA-Z0-9\-]/g, '');

@@ -34,6 +34,7 @@
           <option value="gemini">Gemini</option>
           <option value="deepseek">DeepSeek</option>
           <option value="claude">Claude</option>
+          <option value="aws_claude">AWS Claude</option>
         </select>
       </div>
       
@@ -85,6 +86,55 @@
           v-model="globalSettings.ClaudeApiKey"
           class="form-input"
         >
+      </div>
+      
+      <!-- AWS Claude Credentials -->
+      <div class="mb-6 p-5 border border-borderColor rounded-custom bg-bgLight transition-all duration-300 hover:shadow-md hover:border-primary">
+        <label class="block mb-4 font-bold">
+          AWS Claude模型的认证信息
+        </label>
+        
+        <div class="mb-3">
+          <label for="setting-AwsAccessKeyId" class="block mb-1">
+            AWS Access Key ID
+          </label>
+          <input 
+            type="password"
+            id="setting-AwsAccessKeyId"
+            name="AwsAccessKeyId"
+            placeholder="输入AWS Access Key ID"
+            v-model="globalSettings.AwsAccessKeyId"
+            class="form-input"
+          >
+        </div>
+        
+        <div class="mb-3">
+          <label for="setting-AwsSecretAccessKey" class="block mb-1">
+            AWS Secret Access Key
+          </label>
+          <input 
+            type="password"
+            id="setting-AwsSecretAccessKey"
+            name="AwsSecretAccessKey"
+            placeholder="输入AWS Secret Access Key"
+            v-model="globalSettings.AwsSecretAccessKey"
+            class="form-input"
+          >
+        </div>
+        
+        <div>
+          <label for="setting-AwsRegion" class="block mb-1">
+            AWS Region
+          </label>
+          <input 
+            type="text"
+            id="setting-AwsRegion"
+            name="AwsRegion"
+            placeholder="例如: us-east-1"
+            v-model="globalSettings.AwsRegion"
+            class="form-input"
+          >
+        </div>
       </div>
       
       <!-- Backend Host -->
@@ -234,6 +284,9 @@ export default {
       GeminiApiKey: '',
       DeepSeekApiKey: '',
       ClaudeApiKey: '',
+      AwsAccessKeyId: '',
+      AwsSecretAccessKey: '',
+      AwsRegion: 'us-east-1',
       BackendHost: 'http://localhost:4000'
     })
     const loading = ref(false)
@@ -257,6 +310,9 @@ export default {
             GeminiApiKey: config.GEMINI_API_KEY || '',
             DeepSeekApiKey: config.DEEPSEEK_API_KEY || '',
             ClaudeApiKey: config.CLAUDE_API_KEY || '',
+            AwsAccessKeyId: config.AWS_ACCESS_KEY_ID || '',
+            AwsSecretAccessKey: config.AWS_SECRET_ACCESS_KEY || '',
+            AwsRegion: config.AWS_REGION || 'us-east-1',
             BackendHost: config.BACKEND_HOST || 'http://localhost:4000'
           };
         } catch (err) {
@@ -328,6 +384,9 @@ export default {
             CLAUDE_API_KEY: globalSettings.value.ClaudeApiKey,
             DEEPSEEK_API_KEY: globalSettings.value.DeepSeekApiKey,
             GEMINI_API_KEY: globalSettings.value.GeminiApiKey,
+            AWS_ACCESS_KEY_ID: globalSettings.value.AwsAccessKeyId,
+            AWS_SECRET_ACCESS_KEY: globalSettings.value.AwsSecretAccessKey,
+            AWS_REGION: globalSettings.value.AwsRegion,
             BACKEND_HOST: globalSettings.value.BackendHost
           };
           

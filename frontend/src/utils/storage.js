@@ -11,6 +11,9 @@ const DEFAULT_GLOBAL_CONFIG = {
   CLAUDE_API_KEY: '',
   DEEPSEEK_API_KEY: '',
   GEMINI_API_KEY: '',
+  AWS_ACCESS_KEY_ID: '',
+  AWS_SECRET_ACCESS_KEY: '',
+  AWS_REGION: 'us-east-1',
   BACKEND_HOST: 'http://localhost:4000'
 };
 
@@ -90,6 +93,15 @@ export function saveGlobalConfig(config) {
     if (config.DeepSeekApiKey && !config.DEEPSEEK_API_KEY) {
       completeConfig.DEEPSEEK_API_KEY = config.DeepSeekApiKey;
     }
+    if (config.AwsAccessKeyId && !config.AWS_ACCESS_KEY_ID) {
+      completeConfig.AWS_ACCESS_KEY_ID = config.AwsAccessKeyId;
+    }
+    if (config.AwsSecretAccessKey && !config.AWS_SECRET_ACCESS_KEY) {
+      completeConfig.AWS_SECRET_ACCESS_KEY = config.AwsSecretAccessKey;
+    }
+    if (config.AwsRegion && !config.AWS_REGION) {
+      completeConfig.AWS_REGION = config.AwsRegion;
+    }
     
     saveData(GLOBAL_CONFIG_KEY, completeConfig)
     console.log('全局配置已保存到localStorage:', completeConfig)
@@ -144,6 +156,8 @@ export function hasRequiredApiKey(llmType) {
       return !!config.DEEPSEEK_API_KEY;
     case 'gemini':
       return !!config.GEMINI_API_KEY;
+    case 'aws_claude':
+      return !!config.AWS_ACCESS_KEY_ID && !!config.AWS_SECRET_ACCESS_KEY;
     default:
       return false;
   }
